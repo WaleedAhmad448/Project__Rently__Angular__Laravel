@@ -1,0 +1,62 @@
+.imglogo{
+    padding-left: 10px;
+  }
+.titlee{
+font-size: 100px;
+}
+.houseicon{
+    margin-left: 10px;
+}
+.ss{
+max-width: 100% !important;
+}
+.lead{
+font-size: 20px !important;
+margin-bottom: -15px !important;
+text-align: justify !important;
+text-justify: inter-word !important;
+}
+.thanks{
+margin-top: 20px !important;
+}
+.explor{
+    color: white;
+    background-color: #132066;
+}
+.haftitle{
+color: rgb(238, 255, 0);
+}
+#intooo{
+height: 85vh;
+}
+#Aboutus{
+margin-bottom: 200px;
+}
+.animated-image {
+    animation: moveUpDown 1s infinite linear alternate;
+  }
+  
+@keyframes moveUpDown {
+0% {
+    transform: translateY(0);
+}
+100% {
+    transform: translateY(-20px); /* Adjust the distance of the movement */
+}
+}
+@media only screen and (max-width: 993px){
+.titlee{
+    font-size: 80px;
+}
+.lead{
+    font-size: 15px !important;
+    margin-bottom: -15px !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+}
+.aboutcontent{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+}

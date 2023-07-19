@@ -1,0 +1,124 @@
+<div class="container main">
+    <form class="row g-3">
+        <div class="col-md-3 ss">
+            <div class="top">
+                <img src="http://127.0.0.1:8000/storage/Houses/image/{{Profile_picturs}}" class="profileimg" alt="">
+                <label class="form-label d-block per" for="">{{First_name}} {{Last_name}}</label>
+                <div class="row">
+                    <div class="col">
+                        <label class="d-block per">Posts</label>
+                        <label class="d-block ">{{nmbrPosts}}</label>
+                    </div>
+                    <div class="col">
+                        <label class="d-block per">Favourite</label>
+                        <label class="d-block">{{nbrFavourit}}</label>
+                    </div>
+                </div>
+            </div> 
+            <div class="bottom">
+                <button class="d-block aa" (click)="showPersennelinfo()">Personnel Information</button>
+                <button class="d-block aa" (click)="showcreatedperporty()">My Posts</button>
+                <button class="d-block aa" (click)="showFavouritperporty()">My Favourit Posts</button>
+            </div> 
+        </div> 
+        <div class="col-md-9 sss">
+            <form class="row g-3" *ngIf="profile">
+                <div class="col-md-12">
+                    <label class="form-label info">Personnel Information</label>
+                </div>
+                <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">First name</label>
+                <input type="text" class="form-control" [(ngModel)]="First_name" name="First_name">
+                </div>
+                <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Last name</label>
+                <input type="text" class="form-control"[(ngModel)]="Last_name" name="Last_name">
+                </div>
+                <div class="col-12">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-control" [(ngModel)]="Address" name="Address" placeholder="">
+                </div>
+                <div class="col-md-4">
+                <label for="inputState" class="form-label">Gender</label>
+                <select id="inputState" [(ngModel)]="Gender" name="Gender" class="form-select">
+                    <option selected>Famel</option>
+                    <option>Male</option>
+                </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputCity" class="form-label">Nationality</label>
+                    <input type="text"  [(ngModel)]="Nationality" name="Nationality" class="form-control" id="inputCity">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputZip" class="form-label">Profile picturs</label>
+                    <input type="file" class="form-control" (change)="uploadimg($event)" id="inputZip">
+                </div>
+                <div class="col-md-12">
+                    <label for="inputZip" class="form-label info">Contact Information</label>
+                </div>
+                <div class="col-6">
+                    <label for="inputAddress" class="form-label">Email</label>
+                    <input type="email"  [(ngModel)]="email" name="email" class="form-control"placeholder="1234 Main St">
+                </div>
+                <div class="col-6">
+                    <label for="inputAddress" class="form-label">Phone numer</label>
+                    <input type="text"[(ngModel)]="Phone_numer" name="Phone_numer" class="form-control" placeholder="">
+                </div>
+                <div class="col-12 ">
+                <button type="button" (click)="ProfileInformation()" class="btn button-5 float-end">Update Profile</button>
+                </div>
+          </form>
+
+<!-- perporty created ----------------------------------------------------------------------------------->
+
+          <div class="row listing" *ngIf="createdperporty">
+            <ng-container *ngFor="let P of Perporty">
+
+              <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card" >
+                  <img class="card-img-top houseimg" src="http://127.0.0.1:8000/storage/Houses/image/{{P.HouseImage1}}" alt="Card image cap">
+                  <div class="card-body p-1">
+                    <div class="">
+                    <label class="float-right prix">{{P.Price}} DH</label>
+                    <label class="float-end price-tag">{{P.Status}}</label>
+                    </div>
+                    <p class="card-text dd"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                    </svg>{{P.Adresse}}</p>
+                    <a class="btn btncard btn-warning w-45" routerLink="AddHouse/{{P.id}}">UPDATE</a>
+                    <a class="btn btncard btn-warning float-end" (click)="Delete(P.id)">DELETE</a>
+                  </div>
+                </div>
+              </div>
+      
+            </ng-container>
+             
+          </div>
+          <!-- perporty Favourit ----------------------------------------------------------------------------------->
+
+          <div class="row listing" *ngIf="Favouritperporty">
+            <ng-container *ngFor="let m of favPerporty">
+
+              <div class="col-sm-12 col-md-6 col-lg-4 cardsize" (click)="test(m.id)">
+                <div class="card" >
+                  <img class="card-img-top houseimg" src="http://127.0.0.1:8000/storage/Houses/image/{{m.HouseImage1}}" alt="Card image cap">
+                  <div class="card-body p-1">
+                    <div class="">
+                    <label class="float-right prix">{{m.Price}} DH</label>
+                    <label class="float-end price-tag">{{m.Status}}</label>
+                    </div>
+                    <p class="card-text dd"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                    </svg>{{m.Adresse}}</p>
+                    <a routerLink="Property/{{m.id}}" class="btn btncard btn-warning w-45" >DETAILS</a>
+                    <a class="btn btncard btn-warning float-end"(click)="Delete(m.id)">DELETE</a>
+                  </div>
+                </div>
+              </div>
+      
+            </ng-container>
+             
+          </div>
+        </div>
+  </form>
+</div>
