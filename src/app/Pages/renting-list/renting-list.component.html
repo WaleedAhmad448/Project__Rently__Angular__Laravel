@@ -64,7 +64,7 @@
             <img class="card-img-top houseimg" src="http://127.0.0.1:8000/storage/Houses/image/{{P.HouseImage1}}" alt="Card image cap">
             <div class="card-body p-1">
               <div class="">
-              <label class="float-right prix">{{P.Price}} DH</label>
+              <label class="float-right prix">${{P.Price}} USD</label>
               <label class="float-end price-tag">{{P.Status}}</label>
               </div>
               <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -75,15 +75,10 @@
             </div>
           </div>
         </div>
-      
-
       </ng-container>
       <div class="d-flex align-items-center justify-content-center mt-5 mb-5">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
-      
-      
-      
     </div>
   </div>
   
