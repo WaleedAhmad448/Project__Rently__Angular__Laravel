@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { DataserviceServiceService } from './dataservice-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -37,8 +37,8 @@ export class AppComponent {
       this.expression=true
 
       this.Toke=localStorage.getItem('user');
-      this.token=jwt_decode(this.Toke);
-        var $id=this.token.user_id;
+      this.token = jwtDecode(this.Toke);
+      var $id=this.token.user_id;
         this.dataserv.GetUserInfo($id).subscribe(userinfo =>{
           this.user=userinfo;
           this.First_name=this.user[0].First_name

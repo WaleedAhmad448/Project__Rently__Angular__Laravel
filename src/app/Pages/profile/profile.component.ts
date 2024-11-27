@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DataserviceServiceService } from 'src/app/dataservice-service.service';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 
 @Component({
@@ -43,7 +43,7 @@ export class ProfileComponent {
     console.log(this.Profile_picturs);
   }
   ProfileInformation(){
-    this.token=jwt_decode(this.Toke);
+    this.token = jwtDecode(this.Toke);
     var $id=this.token.user_id;
     const formdata=new FormData();
 
@@ -66,7 +66,7 @@ export class ProfileComponent {
   }
 
   GetUsernembers(){
-    this.token=jwt_decode(this.Toke);
+    this.token = jwtDecode(this.Toke);
     var $id=this.token.user_id;
     this.dataserv.GetUserPostsandfavourit($id).subscribe(article =>{
       this.nbrFavourit=article.nbrFavourite;
@@ -75,7 +75,7 @@ export class ProfileComponent {
   }
 
   GetAll(){
-    this.token=jwt_decode(this.Toke);
+    this.token = jwtDecode(this.Toke);
     var $id=this.token.user_id;
     this.dataserv.MyPerporty($id).subscribe(article =>{
       this.Perporty=article;
@@ -83,7 +83,7 @@ export class ProfileComponent {
     })
   }
   UserFavourit(){
-    this.token=jwt_decode(this.Toke);
+    this.token = jwtDecode(this.Toke);
     var $id=this.token.user_id;
     this.dataserv.UserFavouritList($id).subscribe(article =>{
       this.favPerporty=article;
@@ -91,7 +91,7 @@ export class ProfileComponent {
     })
   }
   GetUserInfo(){
-    this.token=jwt_decode(this.Toke);
+    this.token = jwtDecode(this.Toke);
     var $id=this.token.user_id;
     this.dataserv.GetUserInfo($id).subscribe(userinfo =>{
       this.user=userinfo;

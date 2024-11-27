@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { google } from 'google-maps';
 import { DataserviceServiceService } from 'src/app/dataservice-service.service';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -50,31 +50,59 @@ export class CrateHouseComponent {
       });
 
 
-    // Add a click event listener to the map
-    this.map.addListener('click', (event: google.maps.MouseEvent) => {
-      console.log('Latitude:', event.latLng.lat());
-      console.log('Longitude:', event.latLng.lng());
-      this.Latitude=event.latLng.lat()
-      this.Longitude=event.latLng.lng()
-      // this.marker = new google.maps.Marker({
-      //   position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
-      //   map: this.map,
-      // });
-      if (this.marker) {
+//     // Add a click event listener to the map
+//     this.map.addListener('click', (event: google.maps.MouseEvent) => {
+//       console.log('Latitude:', event.latLng.lat());
+//       console.log('Longitude:', event.latLng.lng());
+//       this.Latitude=event.latLng.lat()
+//       this.Longitude=event.latLng.lng()
+//       // this.marker = new google.maps.Marker({
+//       //   position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
+//       //   map: this.map,
+//       // });
+//       if (this.marker) {
+//         this.marker.setMap(null); // Remove existing marker if any
+//       }
+//       this.marker = new google.maps.Marker({
+//         position: {
+//           lat: event.latLng.lat(),
+//           lng: event.latLng.lng()
+//         },
+//         map: this.map
+//       });
+//     });
+//   }
+// }
+
+  // Add a click event listener to the map
+  this.map.addListener('click', (event: google.maps.MapMouseEvent) => {
+
+    if (event.latLng) { // تحقق مما إذا كانت latLng موجودة
+        const latitude = event.latLng.lat();
+        const longitude = event.latLng.lng();
+
+        console.log('Latitude:', latitude);
+        console.log('Longitude:', longitude);
+
+        this.Latitude = latitude;
+        this.Longitude = longitude;
+
+    if (this.marker) {
         this.marker.setMap(null); // Remove existing marker if any
-      }
+        }
       this.marker = new google.maps.Marker({
-        position: {
-          lat: event.latLng.lat(),
-          lng: event.latLng.lng()
-        },
+          position: {
+            lat: latitude,
+            lng: longitude
+          },
         map: this.map
-      });
+          });
+      } else {
+      console.error('LatLng is null');
+      }
     });
-    
   }
-  
-  }
+}
 
   testtherequist(){
     const routeParams = this.route.snapshot.paramMap;
@@ -109,7 +137,7 @@ export class CrateHouseComponent {
     }
   }
   UpdatePerporty(){
-    this.token=jwt_decode(this.Toke);
+    this.token = jwtDecode(this.Toke);    
     var $id=this.token.user_id;
     const formdata=new FormData();
 
@@ -151,8 +179,7 @@ export class CrateHouseComponent {
     }else if(this.Latitude==0 && this.Longitude==0){
       this.toastr.info('Please Enter Propertie Location');
     }else{
-    this.token=jwt_decode(this.Toke);
-    
+    this.token = jwtDecode(this.Toke);    
     const formdata=new FormData();
 
 

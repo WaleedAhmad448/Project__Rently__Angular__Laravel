@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DataserviceServiceService } from 'src/app/dataservice-service.service';
 import { PeropertyDetaileComponent } from '../peroperty-detaile/peroperty-detaile.component';
 import { Injectable } from '@angular/core';
-import jwt_decode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -40,8 +40,7 @@ export class RentingListComponent {
   }
   AddFavourite(id_property:any){
     if(localStorage.getItem('user')){
-        this.token=jwt_decode(this.Toke);
-        var user_id=this.token.user_id;
+      this.token = jwtDecode(this.Toke);        var user_id=this.token.user_id;
         const formdata=new FormData();
 
 

@@ -55,7 +55,7 @@ import { ProfileComponent } from './Pages/profile/profile.component';
           )
         }
       ],
-      onError: (err) => {
+      onError: (err: any) => {
         console.error(err);
       }
     } as SocialAuthServiceConfig,
