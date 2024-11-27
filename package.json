@@ -6,9 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "postinstall": "ngcc && npm run add-polyfills",
-    "add-polyfills": "cat node_modules/crypto-browserify/crypto.js >> node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/browser.js"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
