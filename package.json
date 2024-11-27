@@ -28,6 +28,7 @@
     "ngx-pagination": "^6.0.3",
     "ngx-toastr": "^17.0.2",
     "nodemailer": "^6.9.2",
+    "or": "^0.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
